@@ -1,6 +1,7 @@
 const express = require("express")
 const cors = require("cors")
 const app = express()
+const dotenv = require("dotenv")
 
 app.use(express.json())
 app.use(cors({origin:true}))
@@ -20,7 +21,7 @@ app.post("/auth", async (req,res) => {
         )
         return res.status(r.status).json(r.data)
     } catch (error) {
-        return res.status(error.response.status).json(error.response.data)   
+        return res.status(404).json({message: "Something went wrong"})   
     }
 
 })
